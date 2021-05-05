@@ -27,7 +27,7 @@ namespace MonitorWindowsAgentService
 {
     public partial class Service1 : ServiceBase
     {
-        private System.Timers.Timer timer1,timer2;
+        private System.Timers.Timer timer1,timer2,timer1File;
         Parser pars = new Parser();
         WebSocket ws;
         private ComputerInfo comp=new ComputerInfo();
@@ -51,6 +51,12 @@ namespace MonitorWindowsAgentService
             timer2.AutoReset = true;
             timer2.Enabled = true;
             timer2.Start();
+            timer1File = new System.Timers.Timer();
+            timer1File.Elapsed += new ElapsedEventHandler(this.File1Send);
+            timer1File.Interval = comp.fileLocations.Time1*60000; //number in milisecinds
+            timer1File.AutoReset = true;
+            timer1File.Enabled = true;
+            timer1File.Start();
         }
        
         private void GetStartValue() {
@@ -83,6 +89,27 @@ namespace MonitorWindowsAgentService
             }
 
         }
+        public void FileSender(String pathFile)
+        {
+
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(comp.fileUri);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+
+                streamWriter.Write(getAllFilesJson(pathFile));
+            }
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+            }
+        }
+        private void File1Send(object sender, ElapsedEventArgs e) {
+            // WriteToFile(getAllFilesJson(comp.fileLocations.File1).ToString());
+            FileSender(comp.fileLocations.File1);
+        }
         private void SocketPong(object sender, ElapsedEventArgs e)
         {
             if (ws!=null)    
@@ -104,7 +131,6 @@ namespace MonitorWindowsAgentService
             if (comp.installationCode != null)
                 GetStartValue();
             else Post();
-    
         }
         public void PostJson() {
 
@@ -216,12 +242,28 @@ namespace MonitorWindowsAgentService
                     ws.Send(ret);
                 }
 
-                else if (result["type"].Value<String>() == "getScreenshot") sendScreenshot();
+            else if (result["type"].Value<String>() == "getScreenshot") sendScreenshot();
             else if (result["type"].Value<String>() == "getFile") sendFile(result["path"].Value<String>(), result["fileName"].Value<String>());
             else if (result["type"].Value<String>() == "getFileDirect") sendFile(result["path"].Value<String>(), result["fileName"].Value<String>(), "sendFileDirect");
             else if (result["type"].Value<String>() == "putFile") getFile(result["data"].Value<String>(), result["path"].Value<String>(), result["fileName"].Value<String>());
             else if (result["type"].Value<String>() != "Connected") sendMessage("empty", "Komanda ne postoji");
+            else if (result["type"].Value<String>() == "systemInfo")
+            {
+                //Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                //@"C:\Program Files (x86)\Grupa2\Monitor Service\config.json"
+                try
+                {
+                    String ret = TerminalCommand.SystemInfo("systeminfo", AppDomain.CurrentDomain.BaseDirectory);
+                    WriteToFile(ret);
+                    ws.Send("{ \"type\":\"" + "sendInfo" + "\", \"message\":\"" + ret + "\", \"deviceUid\":\"" + comp.deviceUid + "\"}");
+                }
+                catch (Exception e)
+                {
+                    WriteToFile(e.ToString());
+                }
 
+
+            }
             Logger logger = new Logger(result["type"].Value<String>(), result["user"].Value<String>());
             logger.writeLog();
 
@@ -277,7 +319,41 @@ namespace MonitorWindowsAgentService
             ws.Send("{ \"type\":\"" + "savedFile" + "\", \"message\":\"" + "fileSaved" + "\", \"name\":\"" + comp.name + "\", \"location\":\"" + comp.location + "\", \"ip\":\"" + "ip" + "\"}");
 
         }
+        public JArray getAllFilesJson(string path)
+        {
 
+            JArray a = new JArray();
+            if (File.Exists(path))
+            {
+                Byte[] bytes = File.ReadAllBytes(path);
+                String fileString = Convert.ToBase64String(bytes);
+                JObject jo = new JObject();
+                jo.Add("FileData", fileString);
+                jo.Add("DeviceUID", comp.deviceUid);
+                jo.Add("TimeStamp", DateTime.Now);
+                jo.Add("Name", Path.GetFileName(path));
+                a.Add(jo);
+            }
+            else if (Directory.Exists(path))
+            {
+
+                DirectoryInfo d = new DirectoryInfo(path);
+                FileInfo[] Files = d.GetFiles();
+
+                foreach (FileInfo file in Files)
+                {
+                    JObject jo = new JObject();
+                    Byte[] bytes = File.ReadAllBytes(file.FullName);
+                    String fileString = Convert.ToBase64String(bytes);
+                    jo.Add("FileData", fileString);
+                    jo.Add("DeviceUID", comp.deviceUid);
+                    jo.Add("TimeStamp", DateTime.Now);
+                    jo.Add("Name", file.Name);
+                    a.Add(jo);
+                }
+            }
+            return a;
+        }
         public void PostError(int code)
         {
             string errorData = "{ \"code\":\"" + code + "\", \"message\":\"" + "Doslo je do greske!" + "\", \"deviceUid\":\"" + pars.ConfigParser().deviceUid + "\", \"errorTime\":\"" + DateTime.Now + "\"}";
