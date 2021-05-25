@@ -14,8 +14,7 @@ Najbrži način da pristupite servisima jeste preko Start menija. 
 - Kliknite na nju i tada će vam se otvoriti prozor kao na donjoj slici (Slika 1).
 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.001.png" alt="drawing" width="600"/>
-
-*Slika 1: Lista svih servisa koji su instalirani na računaru*
+*Slika 1: Lista svih servisa koji su instalirani na računaru*.
 
 
 ## Funkcionalnosti
@@ -46,7 +45,8 @@ Važne značajke: 
 
 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.002.png" alt="drawing" width="600"/>
-*Slika 2:  Prikaz MWA Agent servisa u Services*
+*Slika 2:  Prikaz MWA Agent servisa u Services*.
+
 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.003.png" alt="drawing" width="600"/>
 *Slika 3:  MWA Windows Service Properties*.
@@ -69,155 +69,103 @@ Config file sadrži sljedeće podatke:
 - lokacije fileova koji se šalju na server - fileLocations
 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.004.png" alt="drawing" width="600"/>
-*Slika 4: Prikaz config file-a* 
-
-**1.2.4 Komunikacija sa serverom** 
+*Slika 4: Prikaz config file-a*.
 
 
+## Komunikacija sa serverom 
 
 Komunikacija sa serverom je realizovana u vidu nekoliko funkcionalnosti :
-
-
-
 - Primanje config file-a sa servera 
 - Periodično slanje odabranih file-ova ka serveru 
 - Periodično šalje signale o statusu računara
 - Slanje error-a nastalih prilikom rada servisa
 
-
-
 Svi navedeni fileovi koji se šalju ka serveru se spremaju u bazu podataka na nivou cijelog sistema te služe za pregled značajnih podataka za dati računar te proračune vezane za statistiku korištenja aplikacije na računaru.
 
+### Primanje config file-a sa servera
+
+Prilikom prvog pokretanja aplikacije unosi se dodijeljeni installation kod (slika 5). Servis se zatim spaja na server koji mu na osnovu validnog installation koda šalje sve potrebne podatke koji se spremaju u dati config file (slika 6), na osnovu kojih će servis komunicirati u daljem radu. 
+
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.005.png" alt="drawing" width="600"/>
+*Slika 5:  Izgled config file-a prije pokretanja aplikacije*.
 
 
-**1.2.4.1 Primanje config file-a sa servera**
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.006.png" alt="drawing" width="600"/>
+*Slika 6:  Izgled config file-a poslije pokretanja aplikacije*.
 
-
-
-Prilikom prvog pokretanja aplikacije unosi se dodijeljeni installation kod (slika 1.10). Servis se zatim spaja na server koji mu na osnovu validnog installation koda šalje sve potrebne podatke koji se spremaju u dati config file (slika 1.11), na osnovu kojih će servis komunicirati u daljem radu. 
-
-![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.005.png)
-
-*Slika 1.10:  Izgled config file-a prije pokretanja aplikacije*
-
-![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.006.png)
-
-*Slika 1.11:  Izgled config file-a poslije pokretanja aplikacije*
-
-**1.2.4.2 Periodično slanje file-ova prema serveru svakih Time1-Time5 minuta** 
+### Periodično slanje file-ova prema serveru svakih Time1-Time5 minuta** 
 
 Jedna u nizu mogućnosti već pomenutog servisa je slanje filea ili cijelog foldera ka serveru svakih Time1-5 minuta (vremena navedena u config filea). Broj minuta zadaje korisnik prilikom prvog podešavanja config file. Ako je zadana nula, onda se slanje ne vrši nikako. U primjeru na slici šalje se sadržaj cijelog foldera navedenog putanjom file1 u config file-u. Slanje se vrši svako Time1 minuta (u datom primjeru 1 minuta), što se na osnovu TimeStamp-a na slici i može vidjeti.
 
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.007.png" alt="drawing" width="600"/>
+*Slika 7:  Prikaz file-ova koji se šalju prema serveru*.
 
 
-![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.007.png)
+### Periodično slanje signala na server sa informacijom o statusu kompjutera
 
-*Slika 1.12:  Prikaz file-ova koji se šalju prema serveru* 
+Monitor Windows Agent čita podatake vezane za CPU, RAM, HDD i GPU sa računara, te iste šalje prema serveru. Navedeni podaci se šalju svako keepAlive sekundi navedenih u config file-u (slika 8).
 
-**1.2.4.3 Periodično slanje signala na server sa informacijom o statusu kompjutera** 
-
-
-
-Monitor Windows Agent čita podatake vezane za CPU, RAM, HDD i GPU sa računara, te iste šalje prema serveru. Navedeni podaci se šalju svako keepAlive sekundi navedenih u config file-u (slika 1.13).
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.008.png" alt="drawing" width="600"/>
+*Slika 8: Prikaz podataka o iskoristivosti resursa računara*.
 
 
-
-![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.008.png)
-
-*Slika 1.13: Prikaz podataka o iskoristivosti resursa računara*
-
-**1.2.4.4 Slanje error-a nastalih prilikom rada servisa**
-
-
+## Slanje error-a nastalih prilikom rada servisa
 
 Moguće je da tokom rada servisa dođe do određenih poteškoća pri primanju ili slanju zahtjeva na server. Korisnik servisa ne mora biti upućen u prirodu grešaka niti znati da se greška dogodila jer iako dođe do neke greške, servis nastavlja sa radom. Svaki error do kojeg dođe se automatski šalje na servis i evidentira se u bazu.
 
 
+## Real time komunikacija sa web i mobile aplikacijom
 
-**1.2.5 Real time komunikacija sa web i mobile aplikacijom** 
-
-
-
-Komunikacija sa web i mobile aplikacijom je realizovana u vidu nekoliko funkcionalnosti :
-
-
-
+Komunikacija sa web i mobile aplikacijom je realizovana u vidu nekoliko funkcionalnosti:
 - Slanje screenshot-a na zahtjev sa web ili mobilne aplikacije
 - Slanje system info sa računara na kojem je instalirana aplikacija
 - Remote terminal
 - Mogućnost gašenja ili resetovanja računara
 
 
-
-**1.2.5.1 Screenshot** 
-
-
+### Screenshot 
 
 Dodatna mogućnost MWA servisa je sposobnost slanja screenshot-a. Ova funkcionalnost se realizuje kada dođe zahtjev sa web ili mobilne aplikacije. Sve je to usklađeno u realnom vremenu kako bi zadovoljilo da se stvarni snimci ekrana prikazuju u tačno određenim intervalima kada to krajnji korisnik želi. Naravno to povećava mogućnost pronalska nekih errora ili bugova koji bi se eventualno mogli desiti pri samom radu MWA servisa. Zbog ograničenja u mogućnostima Windows servisa, snimak ekrana ne može napraviti sami servis. Iz tog razloga, koristi se pomoćna aplikacija ScreenshotApp koja pravi snimak ekrana svakih 5 sekundi. Aplikacija se pokreće automatski pri svakom paljenju kompjutera.
 
-![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.009.png)
-
-*Slika 1.14: Screenshot ekrana koji se šalje real-time*
-
-**1.2.5.2 Slanje systems information prema serveru**
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.009.png" alt="drawing" width="600"/>
+*Slika 9: Screenshot ekrana koji se šalje real-time*.
 
 
+### Slanje systems information prema serveru
 
 Još jedna mogućnost MWA servisa je sposobnost slanja system information ka web ili mobile aplikaciji. Ova funkcionalnost se također realizuje na osnovu zahtjeva sa već pomenutih aplikacija. Servis pokupi sve sistemske informacije, spremi ih u json objekat te ih proslijedi datim aplikacijama koje ih iščitaju i analiziraju.
 
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.010.png" alt="drawing" width="600"/>
+*Slika 10:  Izgled sistemskih informacija koje su poslane ka serveru*.
 
 
-![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.010.png)
+### Remote terminal (web i mobile)
 
-*Slika 1.15:  Izgled sistemskih informacija koje su poslane ka serveru*
+Naš servis podržava takozvani remote terminal, tj. komande sa web i mobilne aplikacije trebaju da se izvršavaju na zadanom računaru ali sa neke udaljene lokacije. Naš servis omogućava izvršavanje tj. upravljanje komandi terminala npr. komande tipa:  mkdir , cd, ls i slično. Kao najveća prednost remote terminala je ta što korisnik može raditi sa udaljene lokacije ali da se čini kao da se radi na tom računaru.
 
-**1.2.5.3 Remote terminal (web i mobile)**
-
-
-
-Naš servis podržava takozvani remote terminal, tj. komande sa web i mobilne aplikacije trebaju da se izvršavaju na zadanom računaru ali sa neke udaljene lokacije. Naš servis omogućava izvršavanje tj. upravljanje komandi terminala npr. komande tipa :  mkdir , cd, ls i slično. Kao najveća prednost remote terminala je ta što korisnik može raditi sa udaljene lokacije ali da se čini kao da se radi na tom računaru.
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.011.png" alt="drawing" width="600"/>
+*Slika 11:  Terminal na web aplikaciji konektovan na računar preko servisa*.
 
 
-
-![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.011.png)
-
-*Slika 1.16:  Terminal na web aplikaciji konektovan na računar preko servisa* 
-
-
-
-**1.2.5.4 Mogućnost gašenja i resetovanja računara na zahtjev**
-
-
+### Mogućnost gašenja i resetovanja računara na zahtjev
 
 U sklopu servisu je provedena mogućnost da se računar na kojem je servis pokrenut može ugasiti na osnovu zahtjeva sa web ili mobile aplikacije. Date aplikacije komandama kroz terminal te unošenjem odgovarajućih podataka o imenu i šifri računara gase ili resetuju dati računar. Prilikom ponovnog pokretanja računara servis se pokreće automatski što je prikazano na slici ispod:
 
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.012.png" alt="drawing" width="600"/>
+*Slika 12:  Prikaz automatskog startanja servisa* 
 
 
-![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.012.png)
-
-
-
-*Slika 1.17:  Prikaz automatskog startanja servisa* 
-
-
-
-**1.2.6 Event Viewer** 
-
-
+## Event Viewer
 
 Windows Event Viewer prikazuje logove aplikacije i informacije o aktivnosti servisa. Preciznije, prikazuje informacije o radnjama koje je preduzeo krajnji korisnik. Do Event Viewera se dolazi upisom “Event Viewer” u Start pretragu. Nakon otvaranja aplikacije odabere se Monitor Windows Service iz sekcije Applications and Services Logs.
 
 U logu se nalazi naziv klijenta koji je uputio zahtjev prema agentu, kao i podatak o tipu zahtjeva koji je klijent uputio. Iz logova se jasno može vidjeti u koje vrijeme je koji zahtjev upućen. Tip Loga je “Information”. Klikom na neki od logova prikažu se specifični detalji.
 
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.013.png" alt="drawing" width="600"/>
+*Slika 13:  Prikaz svih zahtjeva u event view-eru*
 
 
-![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.013.png)
-
-*Slika 1.17:  Prikaz svih zahtjeva u event view-eru*
-
-
-
-**1.2.7 Uputstvo za instalaciju i korištenje**
+## Uputstvo za instalaciju i korištenje
 
 \1. Install Notepad++
 
@@ -245,37 +193,27 @@ U logu se nalazi naziv klijenta koji je uputio zahtjev prema agentu, kao i podat
 
 \13. Open folder: "C:\Program Files (x86)\Grupa2\ScreenshotApp" and start Screenshot app
 
-
-
 Link za download: <https://drive.google.com/drive/folders/1fbKkZdho65K7S7QS6_iX0FP6gUGjZx_h?fbclid=IwAR0epxKke462EhwMRyHnjVcKRf5qlF_fztYbmTP3ozPBZ8lsFmd_F-vfoXE>
 
 
-
-**1.2.9 Upotrebljivost**
+## Upotrebljivost
 
 Bilo kojem korisniku koji je zainteresovan za rad našeg MWA Windows servisa i njegovih funkcionalnosti je sve objašnjeno u Uputama za instalaciju i korištenje.
 
 Još jedna od odlika Usability-a u FURPS-ovom modelu je dokumentacija. Za naš projekat je odrađena dokumentacija i cijeli proces implementacije je praćen i bilježen po sprintovima.
-**
 
 
-**1.2.10 Pouzdanost**
+## Pouzdanost
 
 Komunikacija između servisa i servera je veoma sigurna i za nju se koristi https protokol. Prilikom svakog poziva servera za određenu rutu vrši se autentifikacija pomoću jwt tokena koji je dostupan nakon autorizacije korisnika. Ovaj token važi 30 minuta. Pored toga određene operacije dodavanja i ažuriranja informacija su dostupne samo korisnicima sa određenim pravima koja su unaprijed definisana u okviru njihovih rola. Server s kojim je povezan naš servis je platforma DigitalOcean koja se ističe u neprekidnom radu, isporučujući u prosjeku> 99,99% vremena tokom posljednje godine praćenja. Handliranje errora je urađeno na način da  se svi errori  automatski šalju prema serveru kako bi se evidentiralo u bazi  kod kojeg agenta je došlo do errora u radu applikacije. U slučaju error-a šalje se poruka ka serveru, u kojem se šalje poruka error-a i kod greške.
 
 
-
-
-
-**1.2.11 Performanse**
+## Performanse
 
 Za sva navedena vremena keepAlive sekundi, te Time1-5 minuta se šalju signali serveru. Naš servis nema ograničenje broja korisnika koji mogu istovremeno koristiti servis, to jeste više korisnika ga može istovremeno koristiti. 
 
 
-
-
-
-` `**1.2.12 Podrška**
+## Podrška
 
 Namijenjen za windows operativni sistem.
 
