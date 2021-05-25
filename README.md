@@ -49,7 +49,7 @@ Važne značajke: 
 
 <br />
 <br />
-<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.003.png" alt="drawing" width="600"/>
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.003.png" alt="drawing" width="450"/>
 *Slika 3:  MWA Windows Service Properties*.
 
 ## Pregled config faile-a na Monitor Windows Servisu
@@ -153,7 +153,7 @@ Naš servis podržava takozvani remote terminal, tj. komande sa web i mobilne ap
 
 U sklopu servisu je provedena mogućnost da se računar na kojem je servis pokrenut može ugasiti na osnovu zahtjeva sa web ili mobile aplikacije. Date aplikacije komandama kroz terminal te unošenjem odgovarajućih podataka o imenu i šifri računara gase ili resetuju dati računar. Prilikom ponovnog pokretanja računara servis se pokreće automatski što je prikazano na slici ispod:
 
-<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.012.png" alt="drawing" width="600"/>
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.012.png" alt="drawing" width="450"/>
 *Slika 12:  Prikaz automatskog startanja servisa* 
 
 
