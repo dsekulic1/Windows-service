@@ -47,7 +47,7 @@ Važne značajke: 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.002.png" alt="drawing" width="600"/>
 *Slika 2:  Prikaz MWA Agent servisa u Services*.
 
-
+<br>
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.003.png" alt="drawing" width="600"/>
 *Slika 3:  MWA Windows Service Properties*.
 
@@ -88,7 +88,7 @@ Prilikom prvog pokretanja aplikacije unosi se dodijeljeni installation kod (slik
 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.005.png" alt="drawing" width="600"/>
 *Slika 5:  Izgled config file-a prije pokretanja aplikacije*.
-
+<br>
 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.006.png" alt="drawing" width="600"/>
 *Slika 6:  Izgled config file-a poslije pokretanja aplikacije*.
@@ -125,7 +125,7 @@ Komunikacija sa web i mobile aplikacijom je realizovana u vidu nekoliko funkcion
 
 ### Screenshot 
 
-Dodatna mogućnost MWA servisa je sposobnost slanja screenshot-a. Ova funkcionalnost se realizuje kada dođe zahtjev sa web ili mobilne aplikacije. Sve je to usklađeno u realnom vremenu kako bi zadovoljilo da se stvarni snimci ekrana prikazuju u tačno određenim intervalima kada to krajnji korisnik želi. Naravno to povećava mogućnost pronalska nekih errora ili bugova koji bi se eventualno mogli desiti pri samom radu MWA servisa. Zbog ograničenja u mogućnostima Windows servisa, snimak ekrana ne može napraviti sami servis. Iz tog razloga, koristi se pomoćna aplikacija ScreenshotApp koja pravi snimak ekrana svakih 5 sekundi. Aplikacija se pokreće automatski pri svakom paljenju kompjutera.
+Dodatna mogućnost MWA servisa je sposobnost slanja screenshot-a. Ova funkcionalnost se realizuje kada dođe zahtjev sa web ili mobilne aplikacije. Sve je to usklađeno u realnom vremenu kako bi zadovoljilo da se stvarni snimci ekrana prikazuju u tačno određenim intervalima kada to krajnji korisnik želi. Naravno to povećava mogućnost pronalska nekih errora ili bugova koji bi se eventualno mogli desiti pri samom radu MWA servisa. Zbog ograničenja u mogućnostima Windows servisa, snimak ekrana ne može napraviti sami servis. Iz tog razloga, koristi se pomoćna aplikacija ScreenshotApp koja pravi snimak ekrana svakih 5 sekundi. Aplikacija se pokreće automatski pri svakom pokretanju računara.
 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.009.png" alt="drawing" width="600"/>
 *Slika 9: Screenshot ekrana koji se šalje real-time*.
@@ -167,31 +167,31 @@ U logu se nalazi naziv klijenta koji je uputio zahtjev prema agentu, kao i podat
 
 ## Uputstvo za instalaciju i korištenje
 
-\1. Install Notepad++
+1. Install Notepad++
 
-\2. Install ScreenshotApp
+2. Install ScreenshotApp
 
-\3. Open CMD (Win+R and type cmd, press enter)
+3. Open CMD (Win+R and type cmd, press enter)
 
-\4. Type cd "C:\Program Files (x86)\Grupa2" (copy all)
+4. Type cd "C:\Program Files (x86)\Grupa2" (copy all)
 
-\5. Type mkdir "Monitor Service" (copy all)
+5. Type mkdir "Monitor Service" (copy all)
 
-\6. Open File Explorer (Windows search and type File Explorer)
+6. Open File Explorer (Windows search and type File Explorer)
 
-\7. Open folder: "C:\Program Files (x86)\Grupa2\Monitor Service"
+7. Open folder: "C:\Program Files (x86)\Grupa2\Monitor Service"
 
-\8. Copy config file in folder
+8. Copy config file in folder
 
-\9. Open config file with notepad++ and type installationcode 
+9. Open config file with notepad++ and type installationcode 
 
-\10. Input File1-File2 directory(file) path and Time1-5 int minute
+10. Input File1-File2 directory(file) path and Time1-5 int minute
 
-\11. Install MonitorWindowsAgentService
+11. Install MonitorWindowsAgentService
 
-\12. Open File Explorer (Windows search and type File Explorer)
+12. Open File Explorer (Windows search and type File Explorer)
 
-\13. Open folder: "C:\Program Files (x86)\Grupa2\ScreenshotApp" and start Screenshot app
+13. Open folder: "C:\Program Files (x86)\Grupa2\ScreenshotApp" and start Screenshot app
 
 Link za download: <https://drive.google.com/drive/folders/1fbKkZdho65K7S7QS6_iX0FP6gUGjZx_h?fbclid=IwAR0epxKke462EhwMRyHnjVcKRf5qlF_fztYbmTP3ozPBZ8lsFmd_F-vfoXE>
 
