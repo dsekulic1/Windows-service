@@ -69,7 +69,7 @@ Važne značajke: 
 - Monitor Windows servis se automatski pokreće prilikom startanja računara na kojem je instaliran
 
 
-
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.002.png" alt="drawing" width="200"/>
 ![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.002.png)
 
 *Slika 1.7:  Prikaz MWA Agent servisa u Services*
