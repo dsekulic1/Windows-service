@@ -19,7 +19,7 @@ Najbrži način da pristupite servisima jeste preko Start menija. 
 
 
 
-![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.001.png)
+![](https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.001.png)
 
 *Slika 1.6: Lista svih servisa koji su instalirani na računaru*
 
