@@ -47,7 +47,8 @@ Važne značajke: 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.002.png" alt="drawing" width="600"/>
 *Slika 2:  Prikaz MWA Agent servisa u Services*.
 
-<br>
+<br/>
+
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.003.png" alt="drawing" width="600"/>
 *Slika 3:  MWA Windows Service Properties*.
 
@@ -88,7 +89,7 @@ Prilikom prvog pokretanja aplikacije unosi se dodijeljeni installation kod (slik
 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.005.png" alt="drawing" width="600"/>
 *Slika 5:  Izgled config file-a prije pokretanja aplikacije*.
-<br>
+<br/>
 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.006.png" alt="drawing" width="600"/>
 *Slika 6:  Izgled config file-a poslije pokretanja aplikacije*.
