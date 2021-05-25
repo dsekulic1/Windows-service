@@ -1,13 +1,11 @@
-##** MWA Windows service** 
+# MWA Windows service
 
-**Opis**
-
+## Opis
 
 Windows servis predstavlja obični program koji se od standardnih aplikacija razlikuje po dva osnova kriterijuma:
 
 - Ne zahtijeva korisničku intervenciju da bi se pokrenuo, dizajniran je da se "tiho" izvršava u pozadini.
 - Podešavanje da li će servis biti pokrenut sa operativnim sistemom ili ne te eventualno zaustavljanje servisa od strane korisnika vrši se preko alatke Services u Windowsu.
-
 
 Najbrži način da pristupite servisima jeste preko Start menija. 
 
@@ -15,21 +13,16 @@ Najbrži način da pristupite servisima jeste preko Start menija. 
 - U samom vrhu liste će vam se pojaviti prečica ka već više puta spominjanoj alatki. 
 - Kliknite na nju i tada će vam se otvoriti prozor kao na donjoj slici (Slika 1).
 
-
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.001.png" alt="drawing" width="600"/>
 
 *Slika 1: Lista svih servisa koji su instalirani na računaru*
 
 
-
-**Funkcionalnosti**
-
-
+## Funkcionalnosti
 
 MWA je Windows aplikacija koja se na IWM-u izvršava u dva načina rada: 
 - kao windows service, pod ograničenim userom koji nema Admin prava 
 - kao desktop aplikacija, pod ograničenim userom koji nema Admin prava 
-
 
 Realizovane funkcionalnosti u okviru windows servisa pružaju mogućnost da:
 - prikuplja informacije sa IWM-a i šalje na Monitor Server (MS) 
@@ -46,7 +39,6 @@ Realizovane funkcionalnosti u okviru windows servisa pružaju mogućnost da:
 - slanje system informations prema serveru
 - real time komunikacija sa web i mobile aplikacijama
 
-
 Važne značajke: 
 - Komunikacija MWA-MS je sigurna. Realizovana je putem https enkripcije. 
 - MWA moze da radi na bilo kom windowsu (win7+), x86 ili x64 oba trebaju biti podržana, podržati i server verzije Windows Server 2008+. Ukoliko ima neki prerequisite (win update, MS redist ili .Net, staviti ga da se automatski instalira prije MWA instalacije). 
@@ -59,16 +51,11 @@ Važne značajke: 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.003.png" alt="drawing" width="600"/>
 *Slika 3:  MWA Windows Service Properties*.
 
-**Pregled config faile-a na Monitor Windows Servisu**
+## Pregled config faile-a na Monitor Windows Servisu
 
 Konfiguracijski file u sklopu aplikacije omogućava pregled svih relevantnih podataka za dati računar. Realizovan je u JSON formatu. Prilikom instaliranja servisa kreira se predefinisani config filea. Prije prvog pokretanja servisa korisnik ne smije mijenjati konfiguracijski file. Nakon što se pokrene servis, šalje se zahtjev na glavni server, kojim se dobije povratna informacija u vidu novog config filea koji se prepisuje preko postojećeg. U nastavku rada aplikacije koristi se config filea sa servera koji sadrži sve jedinstvene podatke kreirane isključivo za dati računar.
 
-
-
-Config file sadrži sljedeće podatke :
-
-
-
+Config file sadrži sljedeće podatke:
 - naziv računara - name 
 - lokaciju računara -location
 - device id - deviceUid
@@ -81,33 +68,8 @@ Config file sadrži sljedeće podatke :
 - instalacijski kod - installationCode
 - lokacije fileova koji se šalju na server - fileLocations
 
-` `![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.004.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*Slika 1.9: Prikaz config file-a* 
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.004.png" alt="drawing" width="600"/>
+*Slika 4: Prikaz config file-a* 
 
 **1.2.4 Komunikacija sa serverom** 
 
