@@ -18,8 +18,7 @@ Najbrži način da pristupite servisima jeste preko Start menija. 
 - Kliknite na nju i tada će vam se otvoriti prozor kao na donjoj slici (Slika 1.6).
 
 
-
-![](https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.001.png)
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.001.png" alt="drawing" width="600"/>
 
 *Slika 1.6: Lista svih servisa koji su instalirani na računaru*
 
@@ -69,9 +68,7 @@ Važne značajke: 
 - Monitor Windows servis se automatski pokreće prilikom startanja računara na kojem je instaliran
 
 
-<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.002.png" alt="drawing" width="200"/>
-![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.002.png)
-
+<img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.002.png" alt="drawing" width="600"/>
 *Slika 1.7:  Prikaz MWA Agent servisa u Services*
 
 ![](Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.003.png)
