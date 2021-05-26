@@ -128,6 +128,7 @@ Komunikacija sa web i mobile aplikacijom je realizovana u vidu nekoliko funkcion
 ### Screenshot 
 
 Dodatna mogućnost MWA servisa je sposobnost slanja screenshot-a. Ova funkcionalnost se realizuje kada dođe zahtjev sa web ili mobilne aplikacije. Sve je to usklađeno u realnom vremenu kako bi zadovoljilo da se stvarni snimci ekrana prikazuju u tačno određenim intervalima kada to krajnji korisnik želi. Naravno to povećava mogućnost pronalska nekih errora ili bugova koji bi se eventualno mogli desiti pri samom radu MWA servisa. Zbog ograničenja u mogućnostima Windows servisa, snimak ekrana ne može napraviti sami servis. Iz tog razloga, koristi se pomoćna aplikacija ScreenshotApp koja pravi snimak ekrana svakih 5 sekundi. Aplikacija se pokreće automatski pri svakom pokretanju računara.
+Link na aplikaciju: https://github.com/dsekulic1/Screenshot-app
 
 <img src="https://github.com/dsekulic1/Windows-service/blob/master/Readme%20foto/Aspose.Words.b3255f80-6125-453d-b5b2-84e27e189ed5.009.png" alt="drawing" width="600"/>
 *Slika 9: Screenshot ekrana koji se šalje real-time*.
