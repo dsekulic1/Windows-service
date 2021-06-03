@@ -57,12 +57,12 @@ Važne značajke: 
 Konfiguracijski file u sklopu aplikacije omogućava pregled svih relevantnih podataka za dati računar. Realizovan je u JSON formatu. Prilikom instaliranja servisa kreira se predefinisani config filea. Prije prvog pokretanja servisa korisnik ne smije mijenjati konfiguracijski file. Nakon što se pokrene servis, šalje se zahtjev na glavni server, kojim se dobije povratna informacija u vidu novog config filea koji se prepisuje preko postojećeg. U nastavku rada aplikacije koristi se config filea sa servera koji sadrži sve jedinstvene podatke kreirane isključivo za dati računar.
 
 Config file sadrži sljedeće podatke:
-- naziv računara - name 
+- naziv računara - name (ima računara koje se prikazuje na web i mobile aplikaciji)
 - lokaciju računara -location
 - device id - deviceUid
 - keep alive signal -keepAlive 
 - web socket - webSocketUri
-- pingUri - link putem kojeg servis vrši “javljanje” na server da je aktivan
+- pingUri - link putem kojeg servis vrši "javljanje" na server da je aktivan
 - errorUri - link putem kojeg servis šalje prema serveru errore kako bi se evidentiralo u bazi kod kojeg agenta je došlo do errora prilikom njegovog rada
 - main uri - link putem kojeg servis dobiva početni config file na osnovu installation code-a
 - file uri - link putem kojeg servis svakih Time(1-5) minuta šalje file ili cijeli sadržaj foldera zadanih putanjama file(1-5) na server koji ih ih spašava u bazu  
